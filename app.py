@@ -366,8 +366,6 @@ def init_db(seed: bool = False, drop: bool = False):
     print('Database initialized with demo seed (admin only).')
 
 
-if __name__ == '__main__':
-    with app.app_context():
-        if not os.path.exists(DB_PATH):
-            db.create_all()
-    app.run(host='127.0.0.1', port=5000, debug=True)
+if __name__ == "__main__":
+    from os import environ
+    app.run(host="0.0.0.0", port=int(environ.get("PORT", 5000)))
